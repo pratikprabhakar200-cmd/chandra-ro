@@ -1,16 +1,15 @@
-function bookService(serviceName) {
-    document.getElementById("service").value = serviceName;
-    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+  sheet.appendRow([
+    new Date(),
+    e.parameter.name,
+    e.parameter.mobile,
+    e.parameter.address,
+    e.parameter.service,
+    e.parameter.requirement
+  ]);
+
+  return ContentService
+    .createTextOutput("Booking received successfully");
 }
-
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const service = document.getElementById("service").value;
-
-    document.getElementById("result").textContent =
-        "Thank you " + name + "! Your " + service + " booking request has been received.";
-
-    this.reset();
-});

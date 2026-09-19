@@ -6,10 +6,13 @@
     <title>Chandra RO</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="logo">💧 Chandra RO</div>
+
         <nav>
             <a href="#home">Home</a>
             <a href="#services">Services</a>
@@ -19,67 +22,230 @@
         </nav>
     </header>
 
+
+    <!-- HOME -->
     <section id="home" class="hero">
         <div>
             <p class="tagline">PURE WATER • BETTER LIFE</p>
+
             <h1>Professional RO Service at Your Doorstep</h1>
-            <p>Reliable RO installation, repair and maintenance for your home and office.</p>
+
+            <p>
+                Reliable RO installation, repair and maintenance
+                for your home and office.
+            </p>
+
             <a class="btn" href="#contact">Book a Service</a>
         </div>
     </section>
 
+
+    <!-- SERVICES -->
     <section id="services" class="section">
+
         <p class="tagline">WHAT WE DO</p>
+
         <h2>Our Services</h2>
+
         <div class="cards">
-            <div class="card"><h3>🔧 RO Repair</h3><p>Fast and reliable RO repair service.</p></div>
-            <div class="card"><h3>💧 RO Installation</h3><p>Professional installation at your location.</p></div>
-            <div class="card"><h3>⚙️ RO Maintenance</h3><p>Regular maintenance for smooth performance.</p></div>
-            <div class="card"><h3>🧰 Filter Replacement</h3><p>Replacement of RO filters and parts.</p></div>
+
+            <div class="card">
+                <h3>🔧 RO Repair</h3>
+                <p>Fast and reliable RO repair service.</p>
+            </div>
+
+            <div class="card">
+                <h3>💧 RO Installation</h3>
+                <p>Professional installation at your location.</p>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ RO Maintenance</h3>
+                <p>Regular maintenance for smooth performance.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧰 Filter Replacement</h3>
+                <p>Replacement of RO filters and parts.</p>
+            </div>
+
         </div>
     </section>
 
+
+    <!-- PRICING -->
     <section id="pricing" class="section pricing">
+
         <p class="tagline">OUR PRICES</p>
+
         <h2>Simple Pricing</h2>
+
         <div class="cards">
-            <div class="card price-card"><h3>RO Service</h3><div class="price">₹299</div><p>Check-up, cleaning and performance check.</p><button onclick="bookService('RO Service')">Book Now</button></div>
-            <div class="card price-card"><h3>RO Repair</h3><div class="price">₹399</div><p>Inspection, repair and testing.</p><button onclick="bookService('RO Repair')">Book Now</button></div>
-            <div class="card price-card"><h3>Installation</h3><div class="price">₹499</div><p>Installation, connection and water testing.</p><button onclick="bookService('RO Installation')">Book Now</button></div>
+
+            <div class="card price-card">
+                <h3>RO Service</h3>
+
+                <div class="price">₹299</div>
+
+                <p>
+                    Check-up, cleaning and performance check.
+                </p>
+
+                <button onclick="bookService('RO Service')">
+                    Book Now
+                </button>
+            </div>
+
+
+            <div class="card price-card">
+                <h3>RO Repair</h3>
+
+                <div class="price">₹399</div>
+
+                <p>
+                    Inspection, repair and testing.
+                </p>
+
+                <button onclick="bookService('RO Repair')">
+                    Book Now
+                </button>
+            </div>
+
+
+            <div class="card price-card">
+                <h3>Installation</h3>
+
+                <div class="price">₹499</div>
+
+                <p>
+                    Installation, connection and water testing.
+                </p>
+
+                <button onclick="bookService('RO Installation')">
+                    Book Now
+                </button>
+            </div>
+
         </div>
     </section>
 
+
+    <!-- ABOUT -->
     <section id="about" class="about section">
+
         <p class="tagline">ABOUT CHANDRA RO</p>
+
         <h2>Clean Water. Trusted Service.</h2>
-        <p>Chandra RO provides professional RO installation, repair and maintenance services for homes and offices.</p>
+
+        <p>
+            Chandra RO provides professional RO installation,
+            repair and maintenance services for homes and offices.
+        </p>
+
     </section>
 
+
+    <!-- CONTACT / BOOKING FORM -->
     <section id="contact" class="section contact">
+
         <p class="tagline">BOOK A SERVICE</p>
+
         <h2>Contact Chandra RO</h2>
+
         <form id="bookingForm">
-            <input id="name" type="text" placeholder="Your Name" required>
-            <input id="phone" type="tel" placeholder="Mobile Number" required>
+
+            <!-- CUSTOMER NAME -->
+            <input
+                id="name"
+                type="text"
+                placeholder="Your Name"
+                required
+            >
+
+
+            <!-- MOBILE NUMBER -->
+            <input
+                id="phone"
+                type="tel"
+                placeholder="Mobile Number"
+                required
+            >
+
+
+            <!-- ADDRESS -->
+            <input
+                id="address"
+                type="text"
+                placeholder="Your Address"
+                required
+            >
+
+
+            <!-- SERVICE -->
             <select id="service" required>
-                <option value="">Select Service</option>
-                <option>RO Service</option>
-                <option>RO Repair</option>
-                <option>RO Installation</option>
-                <option>Filter Replacement</option>
+
+                <option value="">
+                    Select Service
+                </option>
+
+                <option>
+                    RO Service
+                </option>
+
+                <option>
+                    RO Repair
+                </option>
+
+                <option>
+                    RO Installation
+                </option>
+
+                <option>
+                    Filter Replacement
+                </option>
+
             </select>
-            <textarea id="message" placeholder="Your Message"></textarea>
-            <button type="submit">Submit Booking</button>
+
+
+            <!-- REQUIREMENTS / MESSAGE -->
+            <textarea
+                id="message"
+                placeholder="Your Message"
+            ></textarea>
+
+
+            <!-- SUBMIT -->
+            <button type="submit">
+                Submit Booking
+            </button>
+
         </form>
+
+
+        <!-- RESULT MESSAGE -->
         <p id="result"></p>
+
     </section>
 
+
+    <!-- FOOTER -->
     <footer>
+
         <strong>💧 Chandra RO</strong>
-        <p>Pure Water • Better Life</p>
-        <p>📍 Gurugram, Haryana</p>
+
+        <p>
+            Pure Water • Better Life
+        </p>
+
+        <p>
+            📍 Gurugram, Haryana
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
+
 </body>
 </html>

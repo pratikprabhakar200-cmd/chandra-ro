@@ -1,193 +1,93 @@
-```html
-<!-- ================= BOOKING SECTION ================= -->
+function doPost(e) {
 
-<section id="contact">
+  try {
 
-    <h2>Book a Service</h2>
+    // Google Sheet
+    var sheet = SpreadsheetApp
+      .getActiveSpreadsheet()
+      .getSheetByName("Sheet1");
 
-    <form id="bookingForm">
 
-        <label for="name">Name</label>
+    // Check Sheet1
+    if (!sheet) {
 
-        <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-            required
-        >
+      throw new Error(
+        "Sheet1 nahi mili. Sheet ka naam exactly Sheet1 hona chahiye."
+      );
 
+    }
 
-        <label for="phone">Mobile Number</label>
 
-        <input
-            type="tel"
-            id="phone"
-            placeholder="Enter your mobile number"
-            required
-        >
+    // Receive JSON data
+    var data =
+      JSON.parse(e.postData.contents);
 
 
-        <label for="address">Address</label>
+    // Add new row
+    sheet.appendRow([
 
-        <textarea
-            id="address"
-            rows="3"
-            placeholder="Enter your address"
-            required
-        ></textarea>
+      new Date(),          // A - DATE
 
+      data.name || "",     // B - CUSTOMER NAME
 
-        <label for="service">Select Service</label>
+      data.phone || "",    // C - MOBILE NO
 
-        <select id="service" required>
+      data.address || "",  // D - ADDRESS
 
-            <option value="">
-                Select a service
-            </option>
+      data.service || "",  // E - SERVICE TYPE
 
-            <option value="RO Service">
-                RO Service
-            </option>
+      data.message || ""   // F - REQUIREMENTS
 
-            <option value="RO Repair">
-                RO Repair
-            </option>
+    ]);
 
-            <option value="RO Installation">
-                RO Installation
-            </option>
 
-            <option value="Filter Change">
-                Filter Change
-            </option>
+    // Success response
+    return ContentService
 
-        </select>
+      .createTextOutput(
 
+        JSON.stringify({
 
-        <label for="message">Requirement</label>
+          success: true,
 
-        <textarea
-            id="message"
-            rows="4"
-            placeholder="Tell us about your RO problem"
-        ></textarea>
+          message:
+            "Booking saved successfully"
 
+        })
 
-        <button type="submit">
-            Book Now
-        </button>
+      )
 
-        <p id="result"></p>
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
 
-    </form>
 
-</section>
+  }
 
 
-<!-- ================= GOOGLE SHEET SCRIPT ================= -->
+  catch (error) {
 
-<script>
 
-const scriptURL =
-"https://script.google.com/macros/s/AKfycbwajII6fWsB85H_8TZ0n0HemDy1d7FyNo3LXDkHCf2UBM0OA-UmFaFmPNXlKLycY_Ix0g/exec";
+    // Error response
+    return ContentService
 
+      .createTextOutput(
 
-document
-.getElementById("bookingForm")
-.addEventListener("submit", function(e) {
+        JSON.stringify({
 
-    e.preventDefault();
+          success: false,
 
+          error:
+            error.message
 
-    const result =
-        document.getElementById("result");
+        })
 
+      )
 
-    const data =
-        new URLSearchParams();
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
 
-
-    data.append(
-        "name",
-        document.getElementById("name").value
-    );
-
-
-    data.append(
-        "mobile",
-        document.getElementById("phone").value
-    );
-
-
-    data.append(
-        "address",
-        document.getElementById("address").value
-    );
-
-
-    data.append(
-        "service",
-        document.getElementById("service").value
-    );
-
-
-    data.append(
-        "requirement",
-        document.getElementById("message").value
-    );
-
-
-    result.innerText =
-        "Booking submit ho rahi hai...";
-
-
-    fetch(scriptURL, {
-
-        method: "POST",
-
-        body: data,
-
-        mode: "no-cors"
-
-    })
-
-    .then(function() {
-
-        result.innerText =
-            "✅ Booking successfully submitted!";
-
-        document
-        .getElementById("bookingForm")
-        .reset();
-
-    })
-
-    .catch(function(error) {
-
-        result.innerText =
-            "❌ Booking submit nahi hui. Please try again.";
-
-        console.error(error);
-
-    });
-
-});
-
-
-function bookService(serviceName) {
-
-    document
-    .getElementById("service")
-    .value = serviceName;
-
-
-    document
-    .getElementById("contact")
-    .scrollIntoView({
-        behavior: "smooth"
-    });
+  }
 
 }
-
-</script>
-```

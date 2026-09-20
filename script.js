@@ -2,88 +2,69 @@ function doPost(e) {
 
   try {
 
-    // Google Sheet
+    // Google Sheet open karo
     var sheet = SpreadsheetApp
       .getActiveSpreadsheet()
       .getSheetByName("Sheet1");
 
 
-    // Check Sheet1
+    // Sheet check
     if (!sheet) {
-
-      throw new Error(
-        "Sheet1 nahi mili. Sheet ka naam exactly Sheet1 hona chahiye."
-      );
-
+      throw new Error("Sheet1 nahi mili");
     }
 
 
-    // Receive JSON data
-    var data =
-      JSON.parse(e.postData.contents);
+    // Website se aaya hua JSON data read karo
+    var data = JSON.parse(e.postData.contents);
 
 
-    // Add new row
+    // Google Sheet mein new row add karo
     sheet.appendRow([
 
-      new Date(),          // A - DATE
+      // Column A
+      new Date(),
 
-      data.name || "",     // B - CUSTOMER NAME
+      // Column B - CUSTOMER NAME
+      data.name || "",
 
-      data.phone || "",    // C - MOBILE NO
+      // Column C - MOBILE NO
+      data.phone || "",
 
-      data.address || "",  // D - ADDRESS
+      // Column D - ADDRESS
+      data.address || "",
 
-      data.service || "",  // E - SERVICE TYPE
+      // Column E - SERVICE TYPE
+      data.service || "",
 
-      data.message || ""   // F - REQUIREMENTS
+      // Column F - REQUIREMENTS
+      data.message || ""
 
     ]);
 
 
     // Success response
     return ContentService
-
       .createTextOutput(
-
         JSON.stringify({
-
           success: true,
-
-          message:
-            "Booking saved successfully"
-
+          message: "Booking successfully saved"
         })
-
       )
-
       .setMimeType(
         ContentService.MimeType.JSON
       );
 
 
-  }
-
-
-  catch (error) {
-
+  } catch (error) {
 
     // Error response
     return ContentService
-
       .createTextOutput(
-
         JSON.stringify({
-
           success: false,
-
-          error:
-            error.message
-
+          error: error.message
         })
-
       )
-
       .setMimeType(
         ContentService.MimeType.JSON
       );
